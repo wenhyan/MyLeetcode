@@ -1,5 +1,5 @@
 #include <iostream>
-#include "test_interface.h"
+#include "third_lib/test_interface.h"
 #include "binary_tree/binary_tree.h"
 
 using std::cout;
@@ -16,7 +16,7 @@ int main() {
     root->left->left = &tree4;
 
     vector<int> res;
-    IteratePreOrderTraversal(root, res);
+    IteratePostOrderTraversal(root, res);
     for (auto &item : res)
         cout << item << " ";
 

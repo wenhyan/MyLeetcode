@@ -18,4 +18,12 @@ using std::stack;
 void RecursivePreOrderTraversal(TreeNode *root, vector<int> &res);
 void IteratePreOrderTraversal(TreeNode *root, vector<int> &res);
 
+// 中序遍历
+void RecursiveInOrderTraversal(TreeNode *root, vector<int> &res);
+void IterateInOrderTraversal(TreeNode *root, vector<int> &res);
+
+// 后序遍历
+void RecursivePostOrderTraversal(TreeNode *root, vector<int> &res);
+void IteratePostOrderTraversal(TreeNode *root, vector<int> &res);
+
 #endif

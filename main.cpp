@@ -16,7 +16,7 @@ int main() {
     root->left->left = &tree4;
 
     vector<int> res;
-    res = IteratePreOrderTraversal(root);
+    res = IteratePreorderTraversal(root);
     for (auto &item : res)
         cout << item << " ";
 

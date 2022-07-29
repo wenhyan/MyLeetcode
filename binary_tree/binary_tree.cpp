@@ -3,33 +3,33 @@
 //
 #include "binary_tree.h"
 
-void RecursivePreOrderTraversal(TreeNode *root, vector<int> &res)
+void RecursivePreorderTraversal(TreeNode *root, vector<int> &res)
 {
     if (root == nullptr) return ;
     res.emplace_back(root->value);
 
-    RecursivePreOrderTraversal(root->left, res);
-    RecursivePreOrderTraversal(root->right, res);
+    RecursivePreorderTraversal(root->left, res);
+    RecursivePreorderTraversal(root->right, res);
 }
 
-void RecursiveInOrderTraversal(TreeNode *root, vector<int> &res)
+void RecursiveInorderTraversal(TreeNode *root, vector<int> &res)
 {
     if (root == nullptr) return ;
-    RecursiveInOrderTraversal(root->left, res);
+    RecursiveInorderTraversal(root->left, res);
     res.emplace_back(root->value);
-    RecursiveInOrderTraversal(root->right, res);
+    RecursiveInorderTraversal(root->right, res);
 }
 
-void RecursivePostOrderTraversal(TreeNode *root, vector<int> &res)
+void RecursivePostorderTraversal(TreeNode *root, vector<int> &res)
 {
     if (root == nullptr) return ;
 
-    RecursivePostOrderTraversal(root->left, res);
-    RecursivePostOrderTraversal(root->right, res);
+    RecursivePostorderTraversal(root->left, res);
+    RecursivePostorderTraversal(root->right, res);
     res.emplace_back(root->value);
 }
 
-void IteratePreOrderTraversal(TreeNode *root, vector<int> &res)
+void IteratePreorderTraversal(TreeNode *root, vector<int> &res)
 {
     if (root == nullptr) return ;
     stack<TreeNode*> tree_st;
@@ -46,7 +46,7 @@ void IteratePreOrderTraversal(TreeNode *root, vector<int> &res)
     }
 }
 
-vector<int> IteratePreOrderTraversal(TreeNode *root)
+vector<int> IteratePreorderTraversal(TreeNode *root)
 {
     vector<int> res;
     if (root == nullptr) return res;
@@ -70,7 +70,7 @@ vector<int> IteratePreOrderTraversal(TreeNode *root)
     return res;
 }
 
-void IterateInOrderTraversal(TreeNode *root, vector<int> &res)
+void IterateInorderTraversal(TreeNode *root, vector<int> &res)
 {
     if (root == nullptr) return ;
     stack<TreeNode*> tree_st;
@@ -89,7 +89,7 @@ void IterateInOrderTraversal(TreeNode *root, vector<int> &res)
     }
 }
 
-void IteratePostOrderTraversal(TreeNode *root, vector<int> &res)
+void IteratePostorderTraversal(TreeNode *root, vector<int> &res)
 {
     if (root == nullptr) return ;
     stack<TreeNode*> tree_st;

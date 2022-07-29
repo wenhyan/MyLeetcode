@@ -46,6 +46,30 @@ void IteratePreOrderTraversal(TreeNode *root, vector<int> &res)
     }
 }
 
+vector<int> IteratePreOrderTraversal(TreeNode *root)
+{
+    vector<int> res;
+    if (root == nullptr) return res;
+
+    stack<TreeNode*> tree_st;
+
+    while (root != nullptr || !tree_st.empty())
+    {
+        while (root)
+        {
+            res.emplace_back(root->value);
+            tree_st.emplace(root);
+            root = root->left;
+        }
+
+        TreeNode *node = tree_st.top();
+        tree_st.pop();
+        root = node->right;
+    }
+
+    return res;
+}
+
 void IterateInOrderTraversal(TreeNode *root, vector<int> &res)
 {
     if (root == nullptr) return ;
@@ -61,8 +85,7 @@ void IterateInOrderTraversal(TreeNode *root, vector<int> &res)
         TreeNode *node = tree_st.top();
         tree_st.pop();
         res.emplace_back(node->value);
-
-        if (node->right) tree_st.emplace(node->right);
+        point = node->right;
     }
 }
 
@@ -93,6 +116,29 @@ void IteratePostOrderTraversal(TreeNode *root, vector<int> &res)
         {
             tree_st.emplace(node);
             root = node->right;
+        }
+    }
+}
+
+void LevelOrderTraversal(TreeNode *root, vector<int> &res)
+{
+    if (root == nullptr) return ;
+    queue<TreeNode*> tree_que;
+
+    tree_que.emplace(root);
+
+    while (!tree_que.empty())
+    {
+        unsigned int len = tree_que.size();
+
+        for (int i = 0; i < len; ++i)
+        {
+            TreeNode *node = tree_que.front();
+            tree_que.pop();
+            res.emplace_back(node->value);
+
+            if (node->left) tree_que.emplace(node->left);
+            if (node->right) tree_que.emplace(node->right);
         }
     }
 }

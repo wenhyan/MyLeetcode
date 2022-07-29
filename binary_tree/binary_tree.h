@@ -8,15 +8,18 @@
 #include <vector>
 #include <string>
 #include <stack>
+#include <queue>
 #include "tree_node.h"
 
 using std::vector;
 using std::string;
 using std::stack;
+using std::queue;
 
 // 前序遍历
 void RecursivePreOrderTraversal(TreeNode *root, vector<int> &res);
 void IteratePreOrderTraversal(TreeNode *root, vector<int> &res);
+vector<int> IteratePreOrderTraversal(TreeNode *root);
 
 // 中序遍历
 void RecursiveInOrderTraversal(TreeNode *root, vector<int> &res);
@@ -25,5 +28,8 @@ void IterateInOrderTraversal(TreeNode *root, vector<int> &res);
 // 后序遍历
 void RecursivePostOrderTraversal(TreeNode *root, vector<int> &res);
 void IteratePostOrderTraversal(TreeNode *root, vector<int> &res);
+
+// 层序遍历
+void LevelOrderTraversal(TreeNode *root, vector<int> &res);
 
 #endif

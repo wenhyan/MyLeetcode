@@ -142,3 +142,39 @@ void LevelOrderTraversal(TreeNode *root, vector<int> &res)
         }
     }
 }
+
+bool RecursiveIsSymmetric(TreeNode *tree, TreeNode *other_tree)
+{
+    if (tree == nullptr && other_tree == nullptr) return true;
+    if (tree == nullptr || other_tree == nullptr) return false;
+    if (tree->value != other_tree->value) return false;
+
+    bool res = RecursiveIsSymmetric(tree->left, other_tree->right) && 
+               RecursiveIsSymmetric(tree->right, other_tree->left);
+    return res;
+}
+
+bool IterateIsSymmetric(TreeNode *tree, TreeNode *other_tree)
+{
+    if (tree == nullptr && other_tree == nullptr) return true;
+
+    queue<TreeNode*> que1, que2;
+    que1.emplace(tree), que2.emplace(other_tree);
+
+    while (!que1.empty() || !que2.empty())
+    {
+        TreeNode *node1 = que1.front();
+        TreeNode *node2 = que2.front();
+        que1.pop();
+        que2.pop();
+
+        if (node1 == nullptr && node2 == nullptr) continue;
+        if (node1 == nullptr || node2 == nullptr) return false;
+        if (node1->value != node2->value) return false;
+
+        que1.emplace(node1->left), que2.emplace(node2->right);
+        que1.emplace(node1->right), que2.emplace(node2->left);
+    }
+
+    return true;
+}

@@ -32,4 +32,8 @@ void IteratePostorderTraversal(TreeNode *root, vector<int> &res);
 // 层序遍历
 void LevelOrderTraversal(TreeNode *root, vector<int> &res);
 
+// 判断对称二叉树
+bool RecursiveIsSymmetric(TreeNode *tree, TreeNode *other_tree);
+bool IterateIsSymmetric(TreeNode *tree, TreeNode *other_tree);
+
 #endif

@@ -66,7 +66,6 @@ vector<int> IteratePreorderTraversal(TreeNode *root)
         tree_st.pop();
         root = node->right;
     }
-
     return res;
 }
 
@@ -111,7 +110,6 @@ void IteratePostorderTraversal(TreeNode *root, vector<int> &res)
         {
             res.emplace_back(node->value);
             point = node;
-            root = nullptr;
         } else
         {
             tree_st.emplace(node);

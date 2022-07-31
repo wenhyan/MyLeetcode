@@ -36,4 +36,10 @@ void LevelOrderTraversal(TreeNode *root, vector<int> &res);
 bool RecursiveIsSymmetric(TreeNode *tree, TreeNode *other_tree);
 bool IterateIsSymmetric(TreeNode *tree, TreeNode *other_tree);
 
+// 路径和
+bool RecursivePathSum(TreeNode *root, int &target);
+bool RecursivePathSum(TreeNode *root, int target, int flag);
+bool IteratePathSum(TreeNode *root, int &target);
+bool LevelOrderPathSum(TreeNode *root, int &target);
+
 #endif

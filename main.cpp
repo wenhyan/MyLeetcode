@@ -21,6 +21,14 @@ int main() {
     tree_right2.left = &tree_right4;
     tree_right2.right = &tree_right3;
 
-    cout << IterateIsSymmetric(root, root) << endl;
+    vector<int> res;
+    RecursivePreorderTraversal(root, res);
+    for (auto &item : res)
+        cout << item << " ";
+
+    cout << endl;
+
+    int target = 3;
+    cout << LevelOrderPathSum(root, target);
     return 0;
 }

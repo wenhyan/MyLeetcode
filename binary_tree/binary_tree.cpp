@@ -176,3 +176,95 @@ bool IterateIsSymmetric(TreeNode *tree, TreeNode *other_tree)
 
     return true;
 }
+
+bool RecursivePathSum(TreeNode *root, int &target)
+{
+    if (root == nullptr) return false;
+    target -= root->value;
+    if (!root->left && !root->right && target == 0) return true;
+
+    if (root->left)
+    {
+        if (RecursivePathSum(root->left, target)) return true;
+        target += root->left->value; // 回溯，每次检查完左子树后，检查右子树前要减去左子树的路径和
+    }
+
+    if (root->right)
+    {
+        if (RecursivePathSum(root->left, target)) return true;
+        target += root->right->value;
+    }
+    return false;
+}
+
+bool RecursivePathSum(TreeNode *root, int target, int flag)
+{
+    if (root == nullptr) return false;
+    target -= root->value;
+
+    if (root->left == nullptr && root->right == nullptr && target == 0) return true;
+
+    return RecursivePathSum(root->left, target, 1) || RecursivePathSum(root->right, target, 1);
+}
+
+bool IteratePathSum(TreeNode *root, int &target)
+{
+    if (root == nullptr) return false;
+    stack<TreeNode*> tree_st;
+    stack<int> sum_st;
+    tree_st.emplace(root);
+    sum_st.emplace(root->value);
+
+    while (!tree_st.empty())
+    {
+        auto node = tree_st.top();
+        auto sum = sum_st.top();
+        tree_st.pop();
+        sum_st.pop();
+
+        if (!node->left && !node->right && sum == target) return true;
+        if (node->left)
+        {
+            tree_st.emplace(node->left);
+            sum_st.emplace(sum + node->left->value);
+        }
+        if (node->right)
+        {
+            tree_st.emplace(node->right);
+            sum_st.emplace(sum + node->right->value);
+        }
+    }
+    return false;
+}
+
+bool LevelOrderPathSum(TreeNode *root, int &target)
+{
+    if (root == nullptr) return false;
+    queue<TreeNode*> tree_que;
+    queue<int> sum_que;
+    tree_que.emplace(root);
+    sum_que.emplace(root->value);
+
+    while (!tree_que.empty())
+    {
+        auto node = tree_que.front();
+        auto sum = sum_que.front();
+        tree_que.pop();
+        sum_que.pop();
+
+        if (!node->left && !node->right && sum == target) return true;
+
+        if (node->left)
+        {
+            tree_que.emplace(node->left);
+            sum_que.emplace(sum + node->left->value);
+        }
+
+        if (node->right)
+        {
+            tree_que.emplace(node->right);
+            sum_que.emplace(sum + node->right->value);
+        }
+    }
+    return false;
+}

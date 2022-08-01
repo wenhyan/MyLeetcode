@@ -191,7 +191,7 @@ bool RecursivePathSum(TreeNode *root, int &target)
 
     if (root->right)
     {
-        if (RecursivePathSum(root->left, target)) return true;
+        if (RecursivePathSum(root->right, target)) return true;
         target += root->right->value;
     }
     return false;

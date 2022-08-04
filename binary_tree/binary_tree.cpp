@@ -268,3 +268,32 @@ bool LevelOrderPathSum(TreeNode *root, int &target)
     }
     return false;
 }
+
+unordered_map<int, int> val_to_index;
+void CreateMap(vector<int> &inorder)
+{
+    for (int i = 0; i < inorder.size(); ++i)
+    {
+        val_to_index[inorder[i]] = i;
+    }
+}
+
+TreeNode *BuildTreeFromPreInOrder(vector<int> &preorder, vector<int> &inorder,
+                                  int preorder_left, int preorder_right,
+                                  int inorder_left, int inorder_right)
+{
+    if (preorder_left > preorder_right) return nullptr;
+
+    auto root = new TreeNode(preorder[preorder_left]);
+
+    int root_index = val_to_index[preorder[preorder_left]];
+    int subtree_len = root_index - inorder_left;
+    root->left = BuildTreeFromPreInOrder(preorder, inorder,
+                                         preorder_left+1, preorder_left + subtree_len,
+                                         inorder_left, root_index);
+    root->right = BuildTreeFromPreInOrder(preorder, inorder,
+                                          preorder_left + subtree_len + 1, preorder_right,
+                                          root_index+1, inorder_right);
+
+    return root;
+}

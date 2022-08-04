@@ -9,12 +9,14 @@
 #include <string>
 #include <stack>
 #include <queue>
+#include <unordered_map>
 #include "tree_node.h"
 
 using std::vector;
 using std::string;
 using std::stack;
 using std::queue;
+using std::unordered_map;
 
 // 前序遍历
 void RecursivePreorderTraversal(TreeNode *root, vector<int> &res);
@@ -41,5 +43,11 @@ bool RecursivePathSum(TreeNode *root, int &target);
 bool RecursivePathSum(TreeNode *root, int target, int flag);
 bool IteratePathSum(TreeNode *root, int &target);
 bool LevelOrderPathSum(TreeNode *root, int &target);
+
+// 通过前序遍历和中序遍历恢复二叉树
+void CreateMap(vector<int> &inorder);
+TreeNode *BuildTreeFromPreInOrder(vector<int> &preorder, vector<int> &inorder,
+                                  int preorder_left, int preorder_right,
+                                  int inorder_left, int inorder_right);
 
 #endif

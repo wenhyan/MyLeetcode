@@ -50,4 +50,9 @@ TreeNode *BuildTreeFromPreInOrder(vector<int> &preorder, vector<int> &inorder,
                                   int preorder_left, int preorder_right,
                                   int inorder_left, int inorder_right);
 
+// 通过中序遍历和后序遍历恢复二叉树
+TreeNode *BuildTreeFromInOrderPostOrder(vector<int> &inorder, vector<int> &postorder,
+                                        int inorder_left, int inorder_right,
+                                        int postorder_left, int postorder_right);
+
 #endif

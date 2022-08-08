@@ -297,3 +297,22 @@ TreeNode *BuildTreeFromPreInOrder(vector<int> &preorder, vector<int> &inorder,
 
     return root;
 }
+
+
+TreeNode *BuildTreeFromInOrderPostOrder(vector<int> &inorder, vector<int> &postorder,
+                                        int inorder_left, int inorder_right,
+                                        int postorder_left, int postorder_right)
+{
+    if (inorder_left > inorder_right) return nullptr;
+    auto root = new TreeNode(postorder[postorder_right]);
+    int root_index = val_to_index[postorder[postorder_right]];
+    int subtree_len = root_index - inorder_left;
+
+    root->left = BuildTreeFromInOrderPostOrder(inorder, postorder,
+                                               inorder_left, root_index-1,
+                                               postorder_left, postorder_left+subtree_len-1);
+    root->right = BuildTreeFromInOrderPostOrder(inorder, postorder,
+                                                root_index, inorder_right,
+                                                postorder_left+subtree_len, postorder_right-1);
+    return root;
+}

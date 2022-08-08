@@ -303,7 +303,7 @@ TreeNode *BuildTreeFromInOrderPostOrder(vector<int> &inorder, vector<int> &posto
                                         int inorder_left, int inorder_right,
                                         int postorder_left, int postorder_right)
 {
-    if (inorder_left > inorder_right) return nullptr;
+    if (postorder_left > postorder_right) return nullptr;
     auto root = new TreeNode(postorder[postorder_right]);
     int root_index = val_to_index[postorder[postorder_right]];
     int subtree_len = root_index - inorder_left;
@@ -314,5 +314,33 @@ TreeNode *BuildTreeFromInOrderPostOrder(vector<int> &inorder, vector<int> &posto
     root->right = BuildTreeFromInOrderPostOrder(inorder, postorder,
                                                 root_index, inorder_right,
                                                 postorder_left+subtree_len, postorder_right-1);
+    return root;
+}
+
+TreeNode *ConnectNodeNext(TreeNode *root)
+{
+    if (root == nullptr) return root;
+
+    queue<TreeNode*> node_que;
+    node_que.emplace(root);
+
+    while (!node_que.empty())
+    {
+        int len = node_que.size();
+        for (int i = 0; i < len; ++i)
+        {
+            auto node = node_que.front();
+            node_que.pop();
+
+            if (i < len-1)
+            {
+                node->next = node_que.front();
+            }
+
+            if (node->left) node_que.emplace(node->left);
+            if (node->right) node_que.emplace(node->right);
+        }
+    }
+
     return root;
 }

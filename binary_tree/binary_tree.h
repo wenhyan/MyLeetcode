@@ -55,4 +55,7 @@ TreeNode *BuildTreeFromInOrderPostOrder(vector<int> &inorder, vector<int> &posto
                                         int inorder_left, int inorder_right,
                                         int postorder_left, int postorder_right);
 
+// 填充每个节点的下一个右侧节点
+TreeNode *ConnectNodeNext(TreeNode *root);
+
 #endif

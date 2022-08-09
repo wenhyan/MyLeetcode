@@ -344,3 +344,12 @@ TreeNode *ConnectNodeNext(TreeNode *root)
 
     return root;
 }
+
+void RecursiveConnectNodeNext(TreeNode *lhs, TreeNode *rhs)
+{
+    if (!lhs || !rhs) return ;
+    lhs->next = rhs;
+    RecursiveConnectNodeNext(lhs->left, rhs->right);
+    RecursiveConnectNodeNext(lhs->right, rhs->left);
+    RecursiveConnectNodeNext(rhs->left, rhs->right);
+}

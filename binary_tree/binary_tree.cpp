@@ -345,6 +345,30 @@ TreeNode *ConnectNodeNext(TreeNode *root)
     return root;
 }
 
+TreeNode *OptConnectNodeNext(TreeNode *root)
+{
+    if (!root) return root;
+    auto current = root;
+
+    while (current)
+    {
+        auto head = current;
+        while (head && head->left) {
+            head->left->next = head->right;
+
+            if (head->next) {
+                head->right->next = head->next->left;
+            }
+
+            head = head->next;
+        }
+
+        current = current->left;
+    }
+
+    return root;
+}
+
 void RecursiveConnectNodeNext(TreeNode *lhs, TreeNode *rhs)
 {
     if (!lhs || !rhs) return ;

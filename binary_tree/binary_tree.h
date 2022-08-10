@@ -58,5 +58,6 @@ TreeNode *BuildTreeFromInOrderPostOrder(vector<int> &inorder, vector<int> &posto
 // 填充每个节点的下一个右侧节点
 TreeNode *ConnectNodeNext(TreeNode *root);
 void RecursiveConnectNodeNext(TreeNode *lhs, TreeNode *rhs);
+TreeNode *OptConnectNodeNext(TreeNode *root);
 
 #endif

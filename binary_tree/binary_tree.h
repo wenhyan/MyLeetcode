@@ -14,6 +14,8 @@
 
 using std::vector;
 using std::string;
+using std::to_string;
+using std::stoi;
 using std::stack;
 using std::queue;
 using std::unordered_map;
@@ -63,5 +65,9 @@ TreeNode *OptConnectNodeNext(TreeNode *root);
 // 找到两个节点的最近公共祖父节点
 TreeNode *LowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q);
 TreeNode *HashLowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q);
+
+// 二叉树的序列化和反序列化
+void SerializeBinaryTree(TreeNode *root, string &res);
+TreeNode* DeserializeBinaryTree(queue<string> &res);
 
 #endif

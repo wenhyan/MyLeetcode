@@ -431,3 +431,47 @@ TreeNode *HashLowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q)
 
     return nullptr;
 }
+
+void SerializeBinaryTree(TreeNode *root, string &res)
+{
+    if (root == nullptr) 
+    {
+        res += "null,";
+        return ;
+    }
+    res += to_string(root->value) + ",";
+    SerializeBinaryTree(root->left, res);
+    SerializeBinaryTree(root->right, res);
+}
+
+void StrToQueue(const string &str, queue<string> &que)
+{
+    string temp_str;
+    for (auto &item : str)
+    {
+        if (item == ',')
+        {
+            que.emplace(temp_str);
+            temp_str = "";
+        } else
+        {
+            temp_str.push_back(item);
+        }
+    }
+}
+
+TreeNode *DeserializeBinaryTree(queue<string> &que)
+{
+    if (que.front() == "#")
+    {
+        que.pop();
+        return nullptr;
+    }
+
+    auto root = new TreeNode(stoi(que.front()));
+    que.pop();
+    root->left = DeserializeBinaryTree(que);
+    root->right = DeserializeBinaryTree(que);
+
+    return root;
+}

@@ -377,3 +377,57 @@ void RecursiveConnectNodeNext(TreeNode *lhs, TreeNode *rhs)
     RecursiveConnectNodeNext(lhs->right, rhs->left);
     RecursiveConnectNodeNext(rhs->left, rhs->right);
 }
+
+TreeNode *LowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q)
+{
+    if (!root || root == p || root == q) return root;
+
+    auto left_tree = LowestCommonAncestor(root->left, p, q);
+    auto right_tree = LowestCommonAncestor(root->right, p, q);
+
+    // 如果左子树和右子树都在，就是公共父节点
+    if (left_tree && right_tree) return root;
+    // 如果左子树在，右子树不在，返回左子树
+    if (left_tree && !right_tree) return left_tree;
+    if (!left_tree && right_tree) return right_tree;
+
+    return nullptr;
+}
+
+unordered_map<int, TreeNode*> val_to_node;
+unordered_map<int, bool> visited;
+
+void dfs(TreeNode *root)
+{
+    if (root->left)
+    {
+        val_to_node[root->left->value] = root;
+        dfs(root->left);
+    }
+
+    if (root->right)
+    {
+        val_to_node[root->right->value] = root;
+        dfs(root->right);
+    }
+}
+
+TreeNode *HashLowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q)
+{
+    val_to_node[root->value] = nullptr;
+
+    dfs(root);
+    while (p)
+    {
+        visited[p->value] = true;
+        p = val_to_node[p->value];
+    }
+
+    while (q)
+    {
+        if (visited[q->value]) return q;
+        q = val_to_node[q->value];
+    }
+
+    return nullptr;
+}

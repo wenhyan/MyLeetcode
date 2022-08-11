@@ -60,4 +60,8 @@ TreeNode *ConnectNodeNext(TreeNode *root);
 void RecursiveConnectNodeNext(TreeNode *lhs, TreeNode *rhs);
 TreeNode *OptConnectNodeNext(TreeNode *root);
 
+// 找到两个节点的最近公共祖父节点
+TreeNode *LowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q);
+TreeNode *HashLowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q);
+
 #endif

@@ -14,6 +14,7 @@
 
 using std::vector;
 using std::string;
+using std::max;
 using std::to_string;
 using std::stoi;
 using std::stack;
@@ -69,5 +70,8 @@ TreeNode *HashLowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q);
 // 二叉树的序列化和反序列化
 void SerializeBinaryTree(TreeNode *root, string &res);
 TreeNode* DeserializeBinaryTree(queue<string> &res);
+
+// 二叉树的直径
+int GetDiameter(TreeNode *root, int &diameter);
 
 #endif

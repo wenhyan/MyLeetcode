@@ -475,3 +475,13 @@ TreeNode *DeserializeBinaryTree(queue<string> &que)
 
     return root;
 }
+
+int GetDiameter(TreeNode *root, int &diameter)
+{
+    if (root == nullptr) return 0;
+    int left_diameter = GetDiameter(root->left, diameter);
+    int right_diameter = GetDiameter(root->right, diameter);
+
+    diameter = max(diameter, left_diameter + right_diameter + 1);
+    return max(left_diameter, right_diameter)+1;
+}
